@@ -1,0 +1,61 @@
+{
+  "name": "reverse-auction-dapp",
+  "description": "A dApp to play with reverse auctions, where the lowest and non repeated auction wins.",
+  "version": "0.1.0",
+  "type": "module",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.7.3",
+    "@openzeppelin/contracts-upgradeable": "^4.8.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "aws-sdk": "^2.1409.0",
+    "dotenv": "^16.0.3",
+    "esm": "^3.2.25",
+    "ipfs-core": "^0.18.1",
+    "ipfs-http-client": "^60.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-multi-carousel": "^2.8.4",
+    "react-router-dom": "^6.14.1",
+    "react-scripts": "5.0.1",
+    "request": "^2.88.2",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.7",
+    "@nomicfoundation/hardhat-toolbox": "^2.0.1",
+    "@nomiclabs/hardhat-etherscan": "^3.1.1",
+    "@openzeppelin/hardhat-upgrades": "^1.21.0",
+    "chai": "^4.3.6",
+    "hardhat": "^2.12.7",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  }
+}

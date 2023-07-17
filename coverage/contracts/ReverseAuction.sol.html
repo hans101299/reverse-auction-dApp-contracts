@@ -1,0 +1,1505 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts\ReverseAuction.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> ReverseAuction.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>120/120</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">96.43% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>135/140</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>26/26</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">99.5% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>198/199</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">119×</span>
+<span class="cline-any cline-yes">119×</span>
+<span class="cline-any cline-yes">113×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">99×</span>
+<span class="cline-any cline-yes">99×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">99×</span>
+<span class="cline-any cline-yes">99×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">99×</span>
+<span class="cline-any cline-yes">99×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">60×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">52×</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-yes">50×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">49×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63×</span>
+<span class="cline-any cline-yes">63×</span>
+<span class="cline-any cline-yes">62×</span>
+<span class="cline-any cline-yes">61×</span>
+<span class="cline-any cline-yes">60×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">59×</span>
+<span class="cline-any cline-yes">59×</span>
+<span class="cline-any cline-yes">59×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">59×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">59×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">59×</span>
+<span class="cline-any cline-yes">59×</span>
+<span class="cline-any cline-yes">59×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">59×</span>
+<span class="cline-any cline-yes">59×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">59×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">42×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
+pragma solidity 0.8.17;
+&nbsp;
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+&nbsp;
+interface INFTTicket is IERC721Upgradeable {
+    function safeMint(address to, uint256 tokenId) external;
+}
+&nbsp;
+interface INFTModifier is IERC721Upgradeable {
+    function safeMint(address to, uint256 tokenId, uint256 typeMod, uint256 value) external;
+    function tokenType(uint256 _tokenId) external view returns(uint256);
+    function tokenValue(uint256 _tokenId) external view returns(uint256);
+    function burn(uint256 _tokenId) external virtual;
+}
+&nbsp;
+contract ReverseAuction is
+    Initializable,
+    AccessControlUpgradeable,
+    UUPSUpgradeable
+{
+    struct AuctionMetadata{
+        uint256 id;
+        address auctioneer;
+        string title;
+        string description;
+        uint256 prize;
+        uint256 entryPrice;
+        uint256 startTime;
+        uint256 endTimeCommit;
+        uint256 endTimeModifiers;
+        uint256 endTimeReveal;
+        bytes32 typeA;
+        uint256 totalBidders;
+        uint256 lowestBid;
+        bool exists;
+        address winner;
+        bool claimed;
+    }
+&nbsp;
+    struct Auction{
+        uint256 id;
+        address auctioneer;
+        string title;
+        string description;
+        uint256 prize;
+        uint256 entryPrice;
+        uint256 startTime;
+        uint256 endTimeCommit;
+        uint256 endTimeModifiers;
+        uint256 endTimeReveal;
+        bytes32 typeA;
+        uint256 totalBidders;
+        uint256 lowestBid;
+        bool exists;
+        bool isNew;
+        mapping(uint256 =&gt; bytes32) commitments;
+        mapping(address =&gt; uint256[]) ticketsByAddress;
+        mapping(uint256 =&gt; uint256) usedCountNumber;
+        mapping(uint256 =&gt; uint256) lastNumberTicketWinner;
+        mapping(uint256 =&gt; bool) ticketInAuction;
+        address winner;
+        bool checkedWinner;
+        bool claimed;
+        uint256 profits;
+    }
+&nbsp;
+    bytes32 public constant NORMAL_RANDOM_TYPE = keccak256("NORMAL_RANDOM");
+    bytes32 public constant NORMAL_SELECT_TYPE = keccak256("NORMAL_SELECT");
+    bytes32 public constant MODIFIERS_RANDOM_TYPE = keccak256("WITH_MODIFIERS_RANDOM");
+    bytes32 public constant MODIFIERS_SELECT_TYPE = keccak256("WITH_MODIFIERS_SELECT");
+&nbsp;
+    bytes32 public constant RECORDER_ROLE = keccak256("RECORDER_ROLE");
+    bytes32 public constant UPGRADER_ROLE = keccak256("UPGRADER_ROLE");
+&nbsp;
+    uint256 public constant ADD_DIGIT_MODIFIER = 0;
+    uint256 public constant DIVIDE_MODIFIER = 1;
+    uint256 public constant SUBTRACT_MODIFIER = 2;
+    uint256 public constant ADD_MODIFIER = 3;
+    uint256 public constant MULTIPLY_MODIFIER = 4;
+&nbsp;
+    IERC20 usdcCoin;
+    INFTTicket ticketNFT;
+    INFTModifier modifierNFT;
+&nbsp;
+    mapping(uint256 =&gt; Auction) auctions;
+    mapping(address =&gt; uint256[]) inProgressAuctionsByAdrress;
+    mapping(address =&gt; uint256[]) pastAuctionsByAdrress;
+    mapping(address =&gt; mapping(uint256 =&gt; uint256)) inProgressAuctionsByAdrressIndex;
+    mapping(uint256 =&gt; uint256[]) modifiersUsedInTicket;
+    mapping(uint256 =&gt; uint256) public ticketToNumber;
+&nbsp;
+    uint256[] public newAuctions;
+    mapping(uint256 =&gt; uint256) newAuctionsIndex;
+&nbsp;
+    uint256 public totalAuctions;
+    uint256 public totalTickets;
+    uint256 public totalModifiers;
+&nbsp;
+    uint public modifierCost; //Inicialmente un dolar
+&nbsp;
+    uint256 feePercent; //Inicialmente 10 pero se puede modificar
+    uint256 private totalFees;
+&nbsp;
+    event CreateAuction(address auctioneer, uint256 auctionId);
+&nbsp;
+    event Commit(address bidder, uint256 auctionId, uint256 ticketId);
+    event BuyModifier(address owner, uint256 modifierId, uint256 typeMod, uint256 value);
+    event Reveal(address bidder, uint256 auctionId, uint256 number);
+    event ClaimPrize(address winner, uint256 auctionId, uint256 number);
+&nbsp;
+&nbsp;
+    modifier auctionExists(uint256 _auctionId){
+        Auction storage auction = auctions[_auctionId];
+        require(auction.exists, "Reverse Auction: The selected Auction id doesn't exist");
+        _;
+    }
+&nbsp;
+    /// @custom:oz-upgrades-unsafe-allow constructor
+    constructor() {
+        _disableInitializers();
+    }
+&nbsp;
+    function initialize() initializer public {
+        __AccessControl_init();
+        __UUPSUpgradeable_init();
+&nbsp;
+        _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
+        _grantRole(UPGRADER_ROLE, msg.sender);
+&nbsp;
+        modifierCost = 1 * 10 ** 6;
+        feePercent = 10;
+    }
+&nbsp;
+    function createCommitment(uint256 _number, string memory _password) public pure returns (bytes32) {
+        return keccak256(abi.encodePacked(_number, _password));
+        
+    }
+&nbsp;
+    function setFeePercent(uint _percent) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        require(_percent &lt;= 100, "Reverse Auction: Percent out of range 0-100");
+        feePercent = _percent;
+    }
+&nbsp;
+    function setUSDCCoin(address _usdcAddress) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        usdcCoin = IERC20(_usdcAddress);
+    }
+&nbsp;
+    function setTicketNFT(address _nftAddress) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        ticketNFT = INFTTicket(_nftAddress);
+    }
+&nbsp;
+    function setModifierNFT(address _nftAddress) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        modifierNFT = INFTModifier(_nftAddress);
+    }
+&nbsp;
+    function createAuction(
+        string memory _title, 
+        string memory _description, 
+        uint256 _prize, 
+        uint256 _entryPrice,
+        uint256 _startTime,
+        uint256 _endTimeCommit, 
+        uint256 _endTimeModifiers,
+        uint256 _endTimeReveal,
+        bytes32 _typeAuction
+    ) public {
+        require(usdcCoin.allowance(msg.sender, address(this)) &gt;= _prize, "Reverse Auction: Not enough allowance");
+        require(usdcCoin.balanceOf(msg.sender) &gt;= _prize, "Reverse Auction: Not enough token balance");
+        require(_typeAuction == NORMAL_RANDOM_TYPE || _typeAuction == NORMAL_SELECT_TYPE || _typeAuction == MODIFIERS_RANDOM_TYPE || _typeAuction == MODIFIERS_SELECT_TYPE,
+        "Reverse Auction: Not allowed type of auction");
+        usdcCoin.transferFrom(msg.sender, address(this), _prize);
+        totalAuctions++;
+        Auction storage auction = auctions[totalAuctions];
+        auction.id = totalAuctions;
+        auction.auctioneer = msg.sender;
+        auction.title = _title;
+        auction.description = _description;
+        auction.prize = _prize;
+        auction.entryPrice = _entryPrice;
+        auction.startTime = _startTime;
+        auction.endTimeCommit = _endTimeCommit;
+        if(_typeAuction == NORMAL_RANDOM_TYPE || _typeAuction == NORMAL_SELECT_TYPE){
+            auction.endTimeModifiers = _endTimeCommit;
+        }
+        else{
+            auction.endTimeModifiers = _endTimeModifiers;
+        }
+        auction.endTimeReveal = _endTimeReveal;
+        auction.typeA = _typeAuction;
+        auction.exists = true;
+        auction.isNew = true;
+        auction.lowestBid = type(uint256).max;
+&nbsp;
+        newAuctionsIndex[auction.id] = newAuctions.length;
+        newAuctions.push(auction.id);
+&nbsp;
+        emit CreateAuction(msg.sender, totalAuctions);
+        
+    }
+&nbsp;
+    function participateSelectAuction(bytes32 _commit, uint256 _auctionId) public auctionExists(_auctionId) {
+        //Este metodo solo puede ser utilizado en subastas del tipo select
+        Auction storage auction = auctions[_auctionId];
+        require(auction.typeA == NORMAL_SELECT_TYPE || auction.typeA == MODIFIERS_SELECT_TYPE, "Reverse Auction: This auction is of a random type, so you cannot commit, the relayer must do it");
+        require(block.timestamp &lt; auction.endTimeCommit &amp;&amp; block.timestamp &gt;= auction.startTime, "Reverse Auction: It is out of time to make a commit");
+        require(usdcCoin.allowance(msg.sender, address(this)) &gt;= auction.entryPrice, "Reverse Auction: Not enough allowance");
+        require(usdcCoin.balanceOf(msg.sender) &gt;= auction.entryPrice, "Reverse Auction: Not enough token balance");
+&nbsp;
+        usdcCoin.transferFrom(msg.sender, address(this), auction.entryPrice);
+        totalFees += auction.entryPrice * feePercent / 100;
+        auction.profits += auction.entryPrice - (auction.entryPrice * feePercent / 100);
+        
+        //Crear NFT id
+        totalTickets++;
+        
+        ticketNFT.safeMint(msg.sender, totalTickets);
+        
+        auction.commitments[totalTickets] = _commit;
+        auction.ticketsByAddress[msg.sender].push(totalTickets);
+        auction.ticketInAuction[totalTickets] = true;
+&nbsp;
+        inProgressAuctionsByAdrressIndex[msg.sender][_auctionId] = inProgressAuctionsByAdrress[msg.sender].length;
+        inProgressAuctionsByAdrress[msg.sender].push(_auctionId);
+&nbsp;
+        emit Commit(msg.sender, _auctionId, totalTickets);
+&nbsp;
+    }
+&nbsp;
+    function participateRandomAuction(bytes32 _commit, uint256 _auctionId, address _participant) public auctionExists(_auctionId) onlyRole(RECORDER_ROLE){
+        //Este metodo solo puede ser utilizado en subastas del tipo select
+        Auction storage auction = auctions[_auctionId];
+        require(auction.typeA == NORMAL_RANDOM_TYPE || auction.typeA == MODIFIERS_RANDOM_TYPE, "Reverse Auction: This auction is of a normal type, so you cannot commit, the participant must do it");
+        require(block.timestamp &lt; auction.endTimeCommit &amp;&amp; block.timestamp &gt;= auction.startTime, "Reverse Auction: It is out of time to make a commit");
+        require(usdcCoin.allowance(_participant, address(this)) &gt;= auction.entryPrice, "Reverse Auction: Not enough allowance");
+        require(usdcCoin.balanceOf(_participant) &gt;= auction.entryPrice, "Reverse Auction: Not enough token balance");
+&nbsp;
+        usdcCoin.transferFrom(_participant, address(this), auction.entryPrice);
+        totalFees += auction.entryPrice * feePercent / 100;
+        auction.profits += auction.entryPrice - (auction.entryPrice * feePercent / 100);
+&nbsp;
+        //Crear NFT id
+        totalTickets++;
+        
+        ticketNFT.safeMint(_participant, totalTickets);
+&nbsp;
+        auction.commitments[totalTickets] = _commit;
+        auction.ticketsByAddress[_participant].push(totalTickets);
+        auction.ticketInAuction[totalTickets] = true;
+&nbsp;
+        inProgressAuctionsByAdrressIndex[_participant][_auctionId] = inProgressAuctionsByAdrress[_participant].length;
+        inProgressAuctionsByAdrress[_participant].push(_auctionId);
+&nbsp;
+        emit Commit(_participant, _auctionId, totalTickets);
+&nbsp;
+    }
+&nbsp;
+    function revealAuction(uint256 _auctionId, uint256 _tokenId ,uint256 _number, string memory _password) public auctionExists(_auctionId) {
+        Auction storage auction = auctions[_auctionId];
+        require(block.timestamp &gt;= auction.endTimeModifiers &amp;&amp; block.timestamp &lt;= auction.endTimeReveal, "Reverse Auction: It is out of time to reveal");
+        require(ticketNFT.ownerOf(_tokenId) == msg.sender, "Reverse Auction: Only the owner of the ticket can reveal the bid");
+        bytes32 commitOriginal = auction.commitments[_tokenId];
+        bytes32 commitToReveal = keccak256(abi.encodePacked(_number, _password));
+&nbsp;
+        require(commitToReveal == commitOriginal, "Reverse Auction: Number and/or password incorrect for this ticket");
+&nbsp;
+        _number = _number * 10;
+&nbsp;
+        if(auction.typeA == MODIFIERS_RANDOM_TYPE || auction.typeA == MODIFIERS_SELECT_TYPE){
+            _number = applyModifiers(_number, _tokenId);
+        }
+&nbsp;
+        auction.usedCountNumber[_number]++;
+        auction.lastNumberTicketWinner[_number] = _tokenId;
+        ticketToNumber[_tokenId] = _number;
+&nbsp;
+        if(auction.isNew){
+            auction.isNew = false;
+            newAuctionsIndex[newAuctions[newAuctions.length - 1]] = newAuctionsIndex[_auctionId];
+            newAuctions[newAuctionsIndex[_auctionId]] = newAuctions[newAuctions.length - 1];
+            newAuctions.pop();
+        }
+&nbsp;
+        emit Reveal(msg.sender, _auctionId, _number);
+    }
+&nbsp;
+    function claimAuctionPrize(uint256 _auctionId, uint256 _tokenId) public auctionExists(_auctionId) {
+        require(ticketNFT.ownerOf(_tokenId) == msg.sender, "Reverse Auction: Only the owner of the ticket can claim the prize");
+        Auction storage auction = auctions[_auctionId];
+        uint256 winnerNumber;
+        if(!auction.checkedWinner){
+            winnerNumber = checkWinner(_auctionId);
+            auction.lowestBid = winnerNumber;
+            <span class="missing-if-branch" title="else path not taken" >E</span>if(auction.lastNumberTicketWinner[winnerNumber] != 0 ){
+                auction.winner = ticketNFT.ownerOf(auction.lastNumberTicketWinner[winnerNumber]);
+            }
+            else {
+                auction.winner = address(0);
+            }
+            auction.checkedWinner = true;
+        }
+        if(!auction.claimed &amp;&amp; msg.sender == auction.winner){
+            usdcCoin.transfer(msg.sender, auction.prize);
+            auction.claimed = true;
+            emit ClaimPrize(auction.winner, _auctionId, winnerNumber);
+        }
+&nbsp;
+        if(auction.auctioneer != msg.sender){
+            inProgressAuctionsByAdrressIndex[msg.sender][inProgressAuctionsByAdrress[msg.sender][inProgressAuctionsByAdrress[msg.sender].length - 1]] = inProgressAuctionsByAdrressIndex[msg.sender][_auctionId];
+            inProgressAuctionsByAdrress[msg.sender][inProgressAuctionsByAdrressIndex[msg.sender][_auctionId]] = inProgressAuctionsByAdrress[msg.sender][inProgressAuctionsByAdrress[msg.sender].length - 1];
+            inProgressAuctionsByAdrress[msg.sender].pop();
+        }
+    }
+&nbsp;
+    function getMyBidsInAuction(uint256 _auctionId) public view returns(uint256[] memory) {
+        Auction storage auction = auctions[_auctionId];        
+        return auction.ticketsByAddress[msg.sender];
+    }
+&nbsp;
+    function getCommitInAuction(uint256 _auctionId, uint256 _ticketId) public view returns(bytes32) {
+        Auction storage auction = auctions[_auctionId];
+        return auction.commitments[_ticketId];
+    }
+&nbsp;
+    function checkWinner(uint256 _auctionId) public view returns(uint256 winnerNumber) {
+        Auction storage auction = auctions[_auctionId];
+        uint index;
+        for(index=0;index&lt;1000;index++){
+            if(auction.usedCountNumber[index]==1){
+                break;
+            }
+        }
+        return index;
+    }
+&nbsp;
+    function claimAuctionProfits(uint256 _auctionId) public auctionExists(_auctionId) {
+        Auction storage auction = auctions[_auctionId];
+        require(block.timestamp &gt; auction.endTimeCommit, "Reverse Auction: Profits can only be claimed after commits");
+        require(msg.sender == auction.auctioneer, "Reverse Auction: You are not the auctioneer");
+&nbsp;
+        inProgressAuctionsByAdrressIndex[msg.sender][inProgressAuctionsByAdrress[msg.sender][inProgressAuctionsByAdrress[msg.sender].length - 1]] = inProgressAuctionsByAdrressIndex[msg.sender][_auctionId];
+        inProgressAuctionsByAdrress[msg.sender][inProgressAuctionsByAdrressIndex[msg.sender][_auctionId]] = inProgressAuctionsByAdrress[msg.sender][inProgressAuctionsByAdrress[msg.sender].length - 1];
+        inProgressAuctionsByAdrress[msg.sender].pop();
+&nbsp;
+        usdcCoin.transfer(msg.sender, auction.profits);
+    }
+&nbsp;
+    function claimFees() public onlyRole(DEFAULT_ADMIN_ROLE) {
+        usdcCoin.transfer(msg.sender, totalFees);
+    }
+&nbsp;
+    function getAuction(uint256 _idAuction) public view returns(AuctionMetadata memory){
+        AuctionMetadata memory auctMD;
+        Auction storage auction = auctions[_idAuction];
+        auctMD.auctioneer = auction.auctioneer;
+        auctMD.claimed = auction.claimed;
+        auctMD.description = auction.description;
+        auctMD.endTimeCommit = auction.endTimeCommit;
+        auctMD.endTimeModifiers = auction.endTimeModifiers;
+        auctMD.endTimeReveal = auction.endTimeReveal;
+        auctMD.entryPrice = auction.entryPrice;
+        auctMD.exists = auction.exists;
+        auctMD.id = auction.id;
+        auctMD.lowestBid = auction.lowestBid;
+        auctMD.prize = auction.prize;
+        auctMD.startTime = auction.startTime;
+        auctMD.title = auction.title;
+        auctMD.totalBidders = auction.totalBidders;
+        auctMD.typeA = auction.typeA;
+        auctMD.winner = auction.winner;
+&nbsp;
+        return auctMD;
+    }
+&nbsp;
+    function getAuctionsPage(uint256 page, uint256 pageSize) external view returns (uint256[] memory, uint256) {
+        require(pageSize &gt; 0, "Reverse Auction: Page size must be positive");
+        require(page == 0 || page*pageSize &lt;= newAuctions.length, "Reverse Auction: Out of bounds");
+        uint256 actualSize = pageSize;
+        if ((page+1)*pageSize &gt; newAuctions.length) {
+            actualSize = newAuctions.length - page*pageSize;
+        }
+        uint256[] memory res = new uint256[](actualSize);
+        for (uint256 i = 0; i &lt; actualSize; i++) {
+            res[i] = newAuctions[page*pageSize+i];
+        }
+        return (res, newAuctions.length);
+    }
+&nbsp;
+    function getMyAuctionsPage(uint256 page, uint256 pageSize) external view returns (uint256[] memory, uint256) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(pageSize &gt; 0, "Reverse Auction: Page size must be positive");
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(page == 0 || <span class="branch-1 cbranch-no" title="branch not covered" >page*pageSize &lt;= inProgressAuctionsByAdrress[msg.sender].length</span>, "Reverse Auction: Out of bounds");
+        uint256 actualSize = pageSize;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if ((page+1)*pageSize &gt; inProgressAuctionsByAdrress[msg.sender].length) {
+            actualSize = inProgressAuctionsByAdrress[msg.sender].length - page*pageSize;
+        }
+        uint256[] memory res = new uint256[](actualSize);
+        for (uint256 i = 0; i &lt; actualSize; i++) {
+            res[i] = inProgressAuctionsByAdrress[msg.sender][page*pageSize+i];
+        }
+        return (res, inProgressAuctionsByAdrress[msg.sender].length);
+    }
+&nbsp;
+    ////////////////////////////////////////////////////////////////////////
+    /////////                   Modifier Methods                   /////////
+    ////////////////////////////////////////////////////////////////////////
+&nbsp;
+    function buyModifier(address _buyer, uint256 typeMod, uint256 value) public onlyRole(RECORDER_ROLE) {
+        require(usdcCoin.allowance(_buyer, address(this)) &gt;= modifierCost, "Reverse Auction: Not enough allowance");
+        require(usdcCoin.balanceOf(_buyer) &gt;= modifierCost, "Reverse Auction: Not enough token balance");
+        totalModifiers++;
+        modifierNFT.safeMint(_buyer, totalModifiers, typeMod, value);
+        emit BuyModifier(_buyer, totalModifiers, typeMod, value);
+    }
+&nbsp;
+    function useModifier(uint256 _auctionId, uint256 _modifierId, uint256 _ticketId) public auctionExists(_auctionId){
+        require(modifierNFT.getApproved(_modifierId) == address(this), "Reverse Auction: The modifier need to be approve to the contract for burn");
+        Auction storage auction = auctions[_auctionId];
+        require(block.timestamp&gt;auction.endTimeCommit &amp;&amp; block.timestamp&lt;= auction.endTimeModifiers, "Reverse Auction: It is out of time to use a modifier");
+        require(modifierNFT.ownerOf(_modifierId) == msg.sender, "Reverse Auction: The modifier isn't yours");
+        require(ticketNFT.ownerOf(_ticketId) == msg.sender, "Reverse Auction: The ticket isn't yours");
+        require(auction.ticketInAuction[_ticketId], "Reverse Auction: This ticket is not in this auction");
+        uint256[] storage modifiersInTicket = modifiersUsedInTicket[_ticketId];
+        modifiersInTicket.push(_modifierId);
+        modifierNFT.burn(_modifierId);
+    }
+&nbsp;
+    function applyModifiers(uint256 _number, uint256 _ticketId) private view returns(uint256 finalNumber) {
+        uint256[] storage modifiersInTicket = modifiersUsedInTicket[_ticketId];
+        uint256 arraySize = modifiersInTicket.length;
+        uint256 numerToModify = _number;
+        for (uint i=0; i&lt;arraySize; i++) {
+            numerToModify = applyModifier(numerToModify, modifierNFT.tokenType(modifiersInTicket[i]), modifierNFT.tokenValue(modifiersInTicket[i]));
+        }
+        return numerToModify;
+    }
+&nbsp;
+    function applyModifier(uint256 _number, uint256 _typeModifier, uint256 _valueModifier) private pure returns(uint256 modifiedNumber) {
+        if(_typeModifier == ADD_DIGIT_MODIFIER){
+            _number = _number/10;
+            return _number*10 + _valueModifier;
+        }
+        else if(_typeModifier == DIVIDE_MODIFIER){
+            _number = _number * 10;
+            uint256 result = _number / _valueModifier;
+            if(result % 10 &gt;= 5){
+                result += 5;
+            }
+            return result / 10;
+        }
+        else if(_typeModifier == SUBTRACT_MODIFIER){
+            uint256 result;
+            if(_valueModifier*10 &gt;= _number){
+                result = 10;
+            }
+            else{
+                result = _number - (_valueModifier * 10);
+            }
+            return result;
+        }
+        else if(_typeModifier == ADD_MODIFIER){
+            return _number + _valueModifier * 10;
+        }
+        else{
+            return _number * _valueModifier;
+        }
+    }
+&nbsp;
+    ////////////////////////////////////////////////////////////////////////
+    /////////                    Helper Methods                    /////////
+    ////////////////////////////////////////////////////////////////////////
+&nbsp;
+    function _authorizeUpgrade(address newImplementation)
+        internal
+        onlyRole(UPGRADER_ROLE)
+        override
+    {}
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jul 16 2023 15:31:44 GMT-0500 (Peru Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
