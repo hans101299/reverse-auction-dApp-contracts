@@ -32,7 +32,7 @@ A continuación, se muestran los diagramas UML utilizados en el proyecto:
 
 ## Video Explicativo
 
-Puedes encontrar un video explicativo de la aplicación en el siguiente enlace: [insertar enlace al video aquí]
+Puedes encontrar un video explicativo de la aplicación en el siguiente enlace: [https://youtu.be/VZyGktOwUNw](https://youtu.be/VZyGktOwUNw)
 
 ## Contacto
 
