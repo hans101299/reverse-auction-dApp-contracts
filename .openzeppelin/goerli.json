@@ -115,6 +115,21 @@
       "address": "0xef41EFC4269359071525875E0d8794848843a5f1",
       "txHash": "0x5f851dabbe084ae625299763198deb0a3ef9e4046b2ba778e0da73be82d4e2eb",
       "kind": "uups"
+    },
+    {
+      "address": "0x79f149F9917c89ccA2bd24a01ee4a49cc0384dDD",
+      "txHash": "0x50842a7b51ce5740ce03bc5a9aca79fce8b0e8021d49abf0f2572f52960ec91d",
+      "kind": "uups"
+    },
+    {
+      "address": "0xaf7AE21675F7b9bf2f801A8f140847390947fe86",
+      "txHash": "0xb59e81b66610dfe1c84db5e3459e62a1aa1f8a0ba71bb942656b1826802b6390",
+      "kind": "uups"
+    },
+    {
+      "address": "0x10DD0bcFDeFE224B7841f49DC252fC6F41CAD9E0",
+      "txHash": "0xe33b217dc7b026af958b3ab987cb098a1ab6a8be6898feed78a9c0d9cada7c16",
+      "kind": "uups"
     }
   ],
   "impls": {
