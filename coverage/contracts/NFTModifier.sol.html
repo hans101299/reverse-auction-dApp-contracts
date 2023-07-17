@@ -159,7 +159,44 @@
 114
 115
 116
-117</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -190,6 +227,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">99×</span>
 <span class="cline-any cline-yes">99×</span>
 <span class="cline-any cline-yes">99×</span>
@@ -199,10 +239,18 @@
 <span class="cline-any cline-yes">99×</span>
 <span class="cline-any cline-yes">99×</span>
 <span class="cline-any cline-yes">99×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -214,16 +262,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -286,6 +352,10 @@ import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol"
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 &nbsp;
+/// @title A Modifier NFT to be used in reverse auctions.
+/// @author Hans Mallma.
+/// @notice This contract implements a NFT that can be used to change the number in an auction.
+/// @dev This contract implements an ERC721 token contract with modifier functionality.
 contract ModifierReverseAuction is Initializable, ERC721Upgradeable, ERC721EnumerableUpgradeable, ERC721URIStorageUpgradeable, ERC721BurnableUpgradeable, AccessControlUpgradeable, UUPSUpgradeable {
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     bytes32 public constant UPGRADER_ROLE = keccak256("UPGRADER_ROLE");
@@ -305,6 +375,9 @@ contract ModifierReverseAuction is Initializable, ERC721Upgradeable, ERC721Enume
         _disableInitializers();
     }
 &nbsp;
+    /**
+     * @dev Initializes the contract.
+     */
     function initialize() initializer public {
         __ERC721_init("ModifierReverseAuction", "MODRA");
         __ERC721Enumerable_init();
@@ -317,10 +390,18 @@ contract ModifierReverseAuction is Initializable, ERC721Upgradeable, ERC721Enume
         _grantRole(UPGRADER_ROLE, msg.sender);
     }
 &nbsp;
+    /// @return The base URI string.
     function _baseURI() internal pure override returns (string memory) {
         return "ipfs://";
     }
 &nbsp;
+    /**
+     * @dev Safely mints a new modifier token.
+     * @param to The address to which the token will be minted.
+     * @param tokenId The token ID of the new modifier.
+     * @param typeMod The type of the modifier.
+     * @param value The value of the modifier.
+     */
     function safeMint(address to, uint256 tokenId, uint256 typeMod, uint256 value)
         public
         onlyRole(MINTER_ROLE)
@@ -329,19 +410,37 @@ contract ModifierReverseAuction is Initializable, ERC721Upgradeable, ERC721Enume
         informationOf[tokenId] = ModifierInformation(typeMod, value);
     }
 &nbsp;
+    /**
+     * @dev Sets the token URI for a given token.
+     * @param tokenId The token ID for which to set the URI.
+     * @param uri The URI string to set for the token.
+     */
     function setTokenURI(uint256 tokenId, string memory uri) public onlyRole(URI_SETTER_ROLE) {
         _setTokenURI(tokenId, uri);
     }
 &nbsp;
+    /**
+     * @dev Retrieves the type of a given modifier token.
+     * @param _tokenId The token ID of the modifier.
+     * @return The type of the modifier.
+     */
     function tokenType(uint256 _tokenId) public view returns(uint256) {
         return informationOf[_tokenId].typeMod;
     }
 &nbsp;
+    /**
+     * @dev Retrieves the value of a given modifier token.
+     * @param _tokenId The token ID of the modifier.
+     * @return The value of the modifier.
+     */
     function tokenValue(uint256 _tokenId) public view returns(uint256) {
-        //Los dos ultimos digitos representan el valor
         return informationOf[_tokenId].value;
     }
 &nbsp;
+    /**
+     * @dev Retrieves the list of modifiers owned by the caller.
+     * @return An array of modifier token IDs.
+     */
     function getMyModifiers() public view returns(uint[] memory){
         uint256 numberModifiers = balanceOf(msg.sender);
         uint256[] memory modifiers = new uint256[](numberModifiers);
@@ -397,7 +496,7 @@ contract ModifierReverseAuction is Initializable, ERC721Upgradeable, ERC721Enume
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jul 16 2023 15:31:44 GMT-0500 (Peru Standard Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jul 17 2023 09:34:27 GMT-0500 (Peru Standard Time)
 </div>
 </div>
 <script src="../prettify.js"></script>

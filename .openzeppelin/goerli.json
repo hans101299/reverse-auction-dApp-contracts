@@ -85,6 +85,36 @@
       "address": "0x156e4Cb6f181F52a30Cf85d754883C7Fc751D055",
       "txHash": "0x1fd4695eba69a9ef0d7d46005c3c1b4f7b7c63c661d3970c771963a1cc71daf9",
       "kind": "uups"
+    },
+    {
+      "address": "0x7feCb0441B565F5Fbe7484EA23436f7d7Bd1D2d2",
+      "txHash": "0xe1986a3a0835d6fe132e66a979b75d21895ef3150a07694d2dea96061c03e1da",
+      "kind": "uups"
+    },
+    {
+      "address": "0xC195aD5b8d1521fb7913D25f6dF048DDcAF9fe36",
+      "txHash": "0xe93ac9dffb897937b0e60d962503641a2d1fad1790be935b27087a917af85d3f",
+      "kind": "uups"
+    },
+    {
+      "address": "0xf1FFdA54C75A053fA99bE3375c9034699a56F173",
+      "txHash": "0x1a024bf404e1935bdf77a64125e76da1846325971e347ca1fdc60bd2a9e93e8e",
+      "kind": "uups"
+    },
+    {
+      "address": "0xB24BE19d6F361a1B0B78941C19a77c9F5dfe8bA3",
+      "txHash": "0x42b56f8dde20c2d726edb04e8790a20229880574e17aaf1b8ae1ded5afa307be",
+      "kind": "uups"
+    },
+    {
+      "address": "0xCd8549bE71D63952c0AEC474B1353B752AcaCC33",
+      "txHash": "0x3ae6e0516870729c4db6a318e1e847e0e3023f2aa98768e10aa095236c9d2914",
+      "kind": "uups"
+    },
+    {
+      "address": "0xef41EFC4269359071525875E0d8794848843a5f1",
+      "txHash": "0x5f851dabbe084ae625299763198deb0a3ef9e4046b2ba778e0da73be82d4e2eb",
+      "kind": "uups"
     }
   ],
   "impls": {
@@ -6492,6 +6522,944 @@
               }
             ],
             "numberOfBytes": "64"
+          },
+          "t_struct(RoleData)34_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "e3a58262e8620ff6c8bc3b571cdfc051b870a2c8037e6da47d339c52968d0513": {
+      "address": "0x2e699efC9C3e05785A84c8d6a3E3654DC80C9C4F",
+      "txHash": "0x871abb7de93c818beba2fa4e1271e00044284c5305e210db6e8e17cf1bd34ebf",
+      "layout": {
+        "solcVersion": "0.8.17",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\utils\\Initializable.sol:63",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\utils\\Initializable.sol:68"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin\\contracts-upgradeable\\utils\\ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ERC165Upgradeable",
+            "src": "@openzeppelin\\contracts-upgradeable\\utils\\introspection\\ERC165Upgradeable.sol:41"
+          },
+          {
+            "label": "_roles",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)34_storage)",
+            "contract": "AccessControlUpgradeable",
+            "src": "@openzeppelin\\contracts-upgradeable\\access\\AccessControlUpgradeable.sol:62"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "AccessControlUpgradeable",
+            "src": "@openzeppelin\\contracts-upgradeable\\access\\AccessControlUpgradeable.sol:260"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "151",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ERC1967UpgradeUpgradeable",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\ERC1967\\ERC1967UpgradeUpgradeable.sol:169"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "201",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "UUPSUpgradeable",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\utils\\UUPSUpgradeable.sol:111"
+          },
+          {
+            "label": "usdcCoin",
+            "offset": 0,
+            "slot": "251",
+            "type": "t_contract(IERC20)5642",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:102"
+          },
+          {
+            "label": "ticketNFT",
+            "offset": 0,
+            "slot": "252",
+            "type": "t_contract(INFTTicket)7445",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:103"
+          },
+          {
+            "label": "modifierNFT",
+            "offset": 0,
+            "slot": "253",
+            "type": "t_contract(INFTModifier)7478",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:104"
+          },
+          {
+            "label": "auctions",
+            "offset": 0,
+            "slot": "254",
+            "type": "t_mapping(t_uint256,t_struct(Auction)7578_storage)",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:106"
+          },
+          {
+            "label": "inProgressAuctionsByAdrress",
+            "offset": 0,
+            "slot": "255",
+            "type": "t_mapping(t_address,t_array(t_uint256)dyn_storage)",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:107"
+          },
+          {
+            "label": "pastAuctionsByAdrress",
+            "offset": 0,
+            "slot": "256",
+            "type": "t_mapping(t_address,t_array(t_uint256)dyn_storage)",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:108"
+          },
+          {
+            "label": "inProgressAuctionsByAdrressIndex",
+            "offset": 0,
+            "slot": "257",
+            "type": "t_mapping(t_address,t_mapping(t_uint256,t_uint256))",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:109"
+          },
+          {
+            "label": "modifiersUsedInTicket",
+            "offset": 0,
+            "slot": "258",
+            "type": "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:110"
+          },
+          {
+            "label": "ticketToNumber",
+            "offset": 0,
+            "slot": "259",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:113"
+          },
+          {
+            "label": "newAuctions",
+            "offset": 0,
+            "slot": "260",
+            "type": "t_array(t_uint256)dyn_storage",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:115"
+          },
+          {
+            "label": "newAuctionsIndex",
+            "offset": 0,
+            "slot": "261",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:116"
+          },
+          {
+            "label": "totalAuctions",
+            "offset": 0,
+            "slot": "262",
+            "type": "t_uint256",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:119"
+          },
+          {
+            "label": "totalTickets",
+            "offset": 0,
+            "slot": "263",
+            "type": "t_uint256",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:121"
+          },
+          {
+            "label": "totalModifiers",
+            "offset": 0,
+            "slot": "264",
+            "type": "t_uint256",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:123"
+          },
+          {
+            "label": "modifierCost",
+            "offset": 0,
+            "slot": "265",
+            "type": "t_uint256",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:125"
+          },
+          {
+            "label": "feePercent",
+            "offset": 0,
+            "slot": "266",
+            "type": "t_uint256",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:127"
+          },
+          {
+            "label": "totalFees",
+            "offset": 0,
+            "slot": "267",
+            "type": "t_uint256",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:128"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]",
+            "numberOfBytes": "32"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_bytes32": {
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "t_contract(IERC20)5642": {
+            "label": "contract IERC20",
+            "numberOfBytes": "20"
+          },
+          "t_contract(INFTModifier)7478": {
+            "label": "contract INFTModifier",
+            "numberOfBytes": "20"
+          },
+          "t_contract(INFTTicket)7445": {
+            "label": "contract INFTTicket",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_address,t_array(t_uint256)dyn_storage)": {
+            "label": "mapping(address => uint256[])",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_mapping(t_uint256,t_uint256))": {
+            "label": "mapping(address => mapping(uint256 => uint256))",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)34_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)": {
+            "label": "mapping(uint256 => uint256[])",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_bool)": {
+            "label": "mapping(uint256 => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_bytes32)": {
+            "label": "mapping(uint256 => bytes32)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(Auction)7578_storage)": {
+            "label": "mapping(uint256 => struct ReverseAuction.Auction)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(Auction)7578_storage": {
+            "label": "struct ReverseAuction.Auction",
+            "members": [
+              {
+                "label": "id",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "auctioneer",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "title",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "description",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "prize",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "entryPrice",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "startTime",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "6"
+              },
+              {
+                "label": "endTimeCommit",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "7"
+              },
+              {
+                "label": "endTimeModifiers",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "8"
+              },
+              {
+                "label": "endTimeReveal",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "9"
+              },
+              {
+                "label": "typeA",
+                "type": "t_bytes32",
+                "offset": 0,
+                "slot": "10"
+              },
+              {
+                "label": "totalBidders",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "11"
+              },
+              {
+                "label": "lowestBid",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "12"
+              },
+              {
+                "label": "exists",
+                "type": "t_bool",
+                "offset": 0,
+                "slot": "13"
+              },
+              {
+                "label": "isNew",
+                "type": "t_bool",
+                "offset": 1,
+                "slot": "13"
+              },
+              {
+                "label": "commitments",
+                "type": "t_mapping(t_uint256,t_bytes32)",
+                "offset": 0,
+                "slot": "14"
+              },
+              {
+                "label": "ticketsByAddress",
+                "type": "t_mapping(t_address,t_array(t_uint256)dyn_storage)",
+                "offset": 0,
+                "slot": "15"
+              },
+              {
+                "label": "usedCountNumber",
+                "type": "t_mapping(t_uint256,t_uint256)",
+                "offset": 0,
+                "slot": "16"
+              },
+              {
+                "label": "lastNumberTicketWinner",
+                "type": "t_mapping(t_uint256,t_uint256)",
+                "offset": 0,
+                "slot": "17"
+              },
+              {
+                "label": "ticketInAuction",
+                "type": "t_mapping(t_uint256,t_bool)",
+                "offset": 0,
+                "slot": "18"
+              },
+              {
+                "label": "winner",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "19"
+              },
+              {
+                "label": "checkedWinner",
+                "type": "t_bool",
+                "offset": 20,
+                "slot": "19"
+              },
+              {
+                "label": "claimed",
+                "type": "t_bool",
+                "offset": 21,
+                "slot": "19"
+              },
+              {
+                "label": "profits",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "20"
+              }
+            ],
+            "numberOfBytes": "672"
+          },
+          "t_struct(RoleData)34_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "7e1712f63dd1544c24b8d230bf1243fef862025aa7c3bfd6f5eb8c1a7181e1f9": {
+      "address": "0x54099E7297B8267c6c9D08608b47f21f90cE6c8c",
+      "txHash": "0xc85f9fbd0dd93577cd8c9919daccd2b879a8e11771aa7d976747ac1e841b85a8",
+      "layout": {
+        "solcVersion": "0.8.17",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\utils\\Initializable.sol:63",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\utils\\Initializable.sol:68"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin\\contracts-upgradeable\\utils\\ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ERC165Upgradeable",
+            "src": "@openzeppelin\\contracts-upgradeable\\utils\\introspection\\ERC165Upgradeable.sol:41"
+          },
+          {
+            "label": "_roles",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)34_storage)",
+            "contract": "AccessControlUpgradeable",
+            "src": "@openzeppelin\\contracts-upgradeable\\access\\AccessControlUpgradeable.sol:62"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "AccessControlUpgradeable",
+            "src": "@openzeppelin\\contracts-upgradeable\\access\\AccessControlUpgradeable.sol:260"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "151",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ERC1967UpgradeUpgradeable",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\ERC1967\\ERC1967UpgradeUpgradeable.sol:169"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "201",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "UUPSUpgradeable",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\utils\\UUPSUpgradeable.sol:111"
+          },
+          {
+            "label": "usdcCoin",
+            "offset": 0,
+            "slot": "251",
+            "type": "t_contract(IERC20)5642",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:103"
+          },
+          {
+            "label": "ticketNFT",
+            "offset": 0,
+            "slot": "252",
+            "type": "t_contract(INFTTicket)7445",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:104"
+          },
+          {
+            "label": "modifierNFT",
+            "offset": 0,
+            "slot": "253",
+            "type": "t_contract(INFTModifier)7478",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:105"
+          },
+          {
+            "label": "auctions",
+            "offset": 0,
+            "slot": "254",
+            "type": "t_mapping(t_uint256,t_struct(Auction)7582_storage)",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:107"
+          },
+          {
+            "label": "inProgressAuctionsByAdrress",
+            "offset": 0,
+            "slot": "255",
+            "type": "t_mapping(t_address,t_array(t_uint256)dyn_storage)",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:108"
+          },
+          {
+            "label": "pastAuctionsByAdrress",
+            "offset": 0,
+            "slot": "256",
+            "type": "t_mapping(t_address,t_array(t_uint256)dyn_storage)",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:109"
+          },
+          {
+            "label": "inProgressAuctionsByAdrressIndex",
+            "offset": 0,
+            "slot": "257",
+            "type": "t_mapping(t_address,t_mapping(t_uint256,t_uint256))",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:110"
+          },
+          {
+            "label": "modifiersUsedInTicket",
+            "offset": 0,
+            "slot": "258",
+            "type": "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:111"
+          },
+          {
+            "label": "ticketToNumber",
+            "offset": 0,
+            "slot": "259",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:114"
+          },
+          {
+            "label": "newAuctions",
+            "offset": 0,
+            "slot": "260",
+            "type": "t_array(t_uint256)dyn_storage",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:116"
+          },
+          {
+            "label": "newAuctionsIndex",
+            "offset": 0,
+            "slot": "261",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:117"
+          },
+          {
+            "label": "totalAuctions",
+            "offset": 0,
+            "slot": "262",
+            "type": "t_uint256",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:120"
+          },
+          {
+            "label": "totalTickets",
+            "offset": 0,
+            "slot": "263",
+            "type": "t_uint256",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:122"
+          },
+          {
+            "label": "totalModifiers",
+            "offset": 0,
+            "slot": "264",
+            "type": "t_uint256",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:124"
+          },
+          {
+            "label": "modifierCost",
+            "offset": 0,
+            "slot": "265",
+            "type": "t_uint256",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:126"
+          },
+          {
+            "label": "feePercent",
+            "offset": 0,
+            "slot": "266",
+            "type": "t_uint256",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:128"
+          },
+          {
+            "label": "totalFees",
+            "offset": 0,
+            "slot": "267",
+            "type": "t_uint256",
+            "contract": "ReverseAuction",
+            "src": "contracts\\ReverseAuction.sol:129"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]",
+            "numberOfBytes": "32"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_bytes32": {
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "t_contract(IERC20)5642": {
+            "label": "contract IERC20",
+            "numberOfBytes": "20"
+          },
+          "t_contract(INFTModifier)7478": {
+            "label": "contract INFTModifier",
+            "numberOfBytes": "20"
+          },
+          "t_contract(INFTTicket)7445": {
+            "label": "contract INFTTicket",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_address,t_array(t_uint256)dyn_storage)": {
+            "label": "mapping(address => uint256[])",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_mapping(t_uint256,t_uint256))": {
+            "label": "mapping(address => mapping(uint256 => uint256))",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)34_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)": {
+            "label": "mapping(uint256 => uint256[])",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_bool)": {
+            "label": "mapping(uint256 => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_bytes32)": {
+            "label": "mapping(uint256 => bytes32)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(Auction)7582_storage)": {
+            "label": "mapping(uint256 => struct ReverseAuction.Auction)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(Auction)7582_storage": {
+            "label": "struct ReverseAuction.Auction",
+            "members": [
+              {
+                "label": "id",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "auctioneer",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "title",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "description",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "prize",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "entryPrice",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "startTime",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "6"
+              },
+              {
+                "label": "endTimeCommit",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "7"
+              },
+              {
+                "label": "endTimeModifiers",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "8"
+              },
+              {
+                "label": "endTimeReveal",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "9"
+              },
+              {
+                "label": "typeA",
+                "type": "t_bytes32",
+                "offset": 0,
+                "slot": "10"
+              },
+              {
+                "label": "totalBidders",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "11"
+              },
+              {
+                "label": "lowestBid",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "12"
+              },
+              {
+                "label": "exists",
+                "type": "t_bool",
+                "offset": 0,
+                "slot": "13"
+              },
+              {
+                "label": "isNew",
+                "type": "t_bool",
+                "offset": 1,
+                "slot": "13"
+              },
+              {
+                "label": "commitments",
+                "type": "t_mapping(t_uint256,t_bytes32)",
+                "offset": 0,
+                "slot": "14"
+              },
+              {
+                "label": "ticketsByAddress",
+                "type": "t_mapping(t_address,t_array(t_uint256)dyn_storage)",
+                "offset": 0,
+                "slot": "15"
+              },
+              {
+                "label": "usedCountNumber",
+                "type": "t_mapping(t_uint256,t_uint256)",
+                "offset": 0,
+                "slot": "16"
+              },
+              {
+                "label": "lastNumberTicketWinner",
+                "type": "t_mapping(t_uint256,t_uint256)",
+                "offset": 0,
+                "slot": "17"
+              },
+              {
+                "label": "ticketInAuction",
+                "type": "t_mapping(t_uint256,t_bool)",
+                "offset": 0,
+                "slot": "18"
+              },
+              {
+                "label": "totalTicketsByAddress",
+                "type": "t_mapping(t_address,t_uint256)",
+                "offset": 0,
+                "slot": "19"
+              },
+              {
+                "label": "winner",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "20"
+              },
+              {
+                "label": "checkedWinner",
+                "type": "t_bool",
+                "offset": 20,
+                "slot": "20"
+              },
+              {
+                "label": "claimed",
+                "type": "t_bool",
+                "offset": 21,
+                "slot": "20"
+              },
+              {
+                "label": "profits",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "21"
+              }
+            ],
+            "numberOfBytes": "704"
           },
           "t_struct(RoleData)34_storage": {
             "label": "struct AccessControlUpgradeable.RoleData",

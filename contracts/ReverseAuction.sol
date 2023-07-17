@@ -68,6 +68,7 @@ contract ReverseAuction is
         mapping(uint256 => uint256) usedCountNumber;
         mapping(uint256 => uint256) lastNumberTicketWinner;
         mapping(uint256 => bool) ticketInAuction;
+        mapping(address => uint256) totalTicketsByAddress;
         address winner;
         bool checkedWinner;
         bool claimed;
@@ -105,7 +106,7 @@ contract ReverseAuction is
 
     mapping(uint256 => Auction) auctions;
     mapping(address => uint256[]) inProgressAuctionsByAdrress;
-    mapping(address => uint256[]) pastAuctionsByAdrress;
+    mapping(address => uint256[]) public pastAuctionsByAdrress;
     mapping(address => mapping(uint256 => uint256)) inProgressAuctionsByAdrressIndex;
     mapping(uint256 => uint256[]) modifiersUsedInTicket;
 
@@ -263,6 +264,9 @@ contract ReverseAuction is
         newAuctionsIndex[auction.id] = newAuctions.length;
         newAuctions.push(auction.id);
 
+        inProgressAuctionsByAdrressIndex[msg.sender][auction.id] = inProgressAuctionsByAdrress[msg.sender].length;
+        inProgressAuctionsByAdrress[msg.sender].push(auction.id);
+
         emit CreateAuction(msg.sender, totalAuctions);
         
     }
@@ -294,8 +298,11 @@ contract ReverseAuction is
         auction.ticketsByAddress[msg.sender].push(totalTickets);
         auction.ticketInAuction[totalTickets] = true;
 
-        inProgressAuctionsByAdrressIndex[msg.sender][_auctionId] = inProgressAuctionsByAdrress[msg.sender].length;
-        inProgressAuctionsByAdrress[msg.sender].push(_auctionId);
+        if(auction.totalTicketsByAddress[msg.sender] == 0 && auction.auctioneer != msg.sender){
+            inProgressAuctionsByAdrressIndex[msg.sender][_auctionId] = inProgressAuctionsByAdrress[msg.sender].length;
+            inProgressAuctionsByAdrress[msg.sender].push(_auctionId);
+        }
+        auction.totalTicketsByAddress[msg.sender]++;
 
         emit Commit(msg.sender, _auctionId, totalTickets);
 
@@ -328,8 +335,11 @@ contract ReverseAuction is
         auction.ticketsByAddress[_participant].push(totalTickets);
         auction.ticketInAuction[totalTickets] = true;
 
-        inProgressAuctionsByAdrressIndex[_participant][_auctionId] = inProgressAuctionsByAdrress[_participant].length;
-        inProgressAuctionsByAdrress[_participant].push(_auctionId);
+        if(auction.totalTicketsByAddress[_participant] == 0){
+            inProgressAuctionsByAdrressIndex[_participant][_auctionId] = inProgressAuctionsByAdrress[_participant].length;
+            inProgressAuctionsByAdrress[_participant].push(_auctionId);
+        }
+        auction.totalTicketsByAddress[_participant]++;
 
         emit Commit(_participant, _auctionId, totalTickets);
 
@@ -380,6 +390,7 @@ contract ReverseAuction is
     function claimAuctionPrize(uint256 _auctionId, uint256 _tokenId) public auctionExists(_auctionId) {
         require(ticketNFT.ownerOf(_tokenId) == msg.sender, "Reverse Auction: Only the owner of the ticket can claim the prize");
         Auction storage auction = auctions[_auctionId];
+        require(auction.ticketInAuction[_tokenId], "Reverse Auction: This ticket is not in auction or it was claimed");
         uint256 winnerNumber;
         //If the auction hasn't been checked for a winner it do it.
         if(!auction.checkedWinner){
@@ -400,10 +411,13 @@ contract ReverseAuction is
             emit ClaimPrize(auction.winner, _auctionId, winnerNumber);
         }
 
+        auction.totalTicketsByAddress[msg.sender]--;
+        auction.ticketInAuction[_tokenId] = false;
         //If it's not the auctioneer the auction it's eliminated from the list of auctions where a user has participated.
-        if(auction.auctioneer != msg.sender){
+        if(auction.totalTicketsByAddress[msg.sender]==0 && auction.auctioneer != msg.sender){
             inProgressAuctionsByAdrressIndex[msg.sender][inProgressAuctionsByAdrress[msg.sender][inProgressAuctionsByAdrress[msg.sender].length - 1]] = inProgressAuctionsByAdrressIndex[msg.sender][_auctionId];
             inProgressAuctionsByAdrress[msg.sender][inProgressAuctionsByAdrressIndex[msg.sender][_auctionId]] = inProgressAuctionsByAdrress[msg.sender][inProgressAuctionsByAdrress[msg.sender].length - 1];
+            pastAuctionsByAdrress[msg.sender].push(inProgressAuctionsByAdrress[msg.sender][inProgressAuctionsByAdrress[msg.sender].length - 1]);
             inProgressAuctionsByAdrress[msg.sender].pop();
         }
     }
@@ -454,9 +468,12 @@ contract ReverseAuction is
         require(block.timestamp > auction.endTimeCommit, "Reverse Auction: Profits can only be claimed after commits");
         require(msg.sender == auction.auctioneer, "Reverse Auction: You are not the auctioneer");
 
-        inProgressAuctionsByAdrressIndex[msg.sender][inProgressAuctionsByAdrress[msg.sender][inProgressAuctionsByAdrress[msg.sender].length - 1]] = inProgressAuctionsByAdrressIndex[msg.sender][_auctionId];
-        inProgressAuctionsByAdrress[msg.sender][inProgressAuctionsByAdrressIndex[msg.sender][_auctionId]] = inProgressAuctionsByAdrress[msg.sender][inProgressAuctionsByAdrress[msg.sender].length - 1];
-        inProgressAuctionsByAdrress[msg.sender].pop();
+        if(auction.totalTicketsByAddress[msg.sender]==0){
+            inProgressAuctionsByAdrressIndex[msg.sender][inProgressAuctionsByAdrress[msg.sender][inProgressAuctionsByAdrress[msg.sender].length - 1]] = inProgressAuctionsByAdrressIndex[msg.sender][_auctionId];
+            inProgressAuctionsByAdrress[msg.sender][inProgressAuctionsByAdrressIndex[msg.sender][_auctionId]] = inProgressAuctionsByAdrress[msg.sender][inProgressAuctionsByAdrress[msg.sender].length - 1];
+            pastAuctionsByAdrress[msg.sender].push(inProgressAuctionsByAdrress[msg.sender][inProgressAuctionsByAdrress[msg.sender].length - 1]);
+            inProgressAuctionsByAdrress[msg.sender].pop();
+        }
 
         usdcCoin.transfer(msg.sender, auction.profits);
     }
