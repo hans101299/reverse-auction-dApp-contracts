@@ -354,10 +354,18 @@ describe("REVERSE AUCTION TESTING", function () {
             });
 
             it("Revisar lista de subastas nuevas por paginado", async() => {
-                var auctions1 = await reverseAuction.getAuctionsPage(0,3);
-                var auctions2 = await reverseAuction.getAuctionsPage(1,3);
+                var [auctions1,] = await reverseAuction.getAuctionsPage(0,3);
+                var [auctions2,] = await reverseAuction.getAuctionsPage(1,3);
                 var auctionsTotal = auctions1.concat(auctions2);
                 expect(auctionsTotal.length).to.be.equal(4);
+            });
+
+            it("Revisar lista de subastas nuevas luego de actualizacion", async() => {
+                await time.increase(7200);
+                var tx = await reverseAuction.connect(owner).updateNewAuctions();
+                await tx.wait();
+                var [auctionsTotal,] = await reverseAuction.getAuctionsPage(0,10);
+                expect(auctionsTotal.length).to.be.equal(0);
             });
 
         });

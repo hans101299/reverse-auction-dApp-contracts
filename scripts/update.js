@@ -6,7 +6,7 @@ var MINTER_ROLE = getRole("MINTER_ROLE");
 var RECORDER_ROLE = getRole("RECORDER_ROLE");
 
 async function updateReverseAuction() {
-  var UpgradeableProxyAddress = "0x47B22E425B80FdEFECd0bDD31A9C6eB8f0E7Da50"; // V1
+  var UpgradeableProxyAddress = "0x79f149F9917c89ccA2bd24a01ee4a49cc0384dDD"; // V1
   const ReverseAuctionV2 = await hre.ethers.getContractFactory(
     "ReverseAuction"
   );

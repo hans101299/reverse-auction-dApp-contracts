@@ -22,22 +22,22 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>127/127</span>
+        <span class='fraction'>135/135</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">94.59% </span>
+        <span class="strong">94% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>140/148</span>
+        <span class='fraction'>141/150</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>26/26</span>
+        <span class='fraction'>27/27</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">99.53% </span>
+        <span class="strong">99.11% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>210/211</span>
+        <span class='fraction'>222/224</span>
       </div>
     </div>
   </div>
@@ -697,7 +697,31 @@
 652
 653
 654
-655</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1219,17 +1243,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
 <span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1250,6 +1274,29 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1262,6 +1309,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">19×</span>
 <span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">17×</span>
 <span class="cline-any cline-yes">17×</span>
 <span class="cline-any cline-yes">17×</span>
 <span class="cline-any cline-yes">17×</span>
@@ -1359,6 +1407,7 @@ import "@openzeppelin/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol"
 import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+&nbsp;
 &nbsp;
 interface INFTTicket is IERC721Upgradeable {
     function safeMint(address to, uint256 tokenId) external;
@@ -1463,7 +1512,6 @@ contract ReverseAuction is
     mapping(address =&gt; mapping(uint256 =&gt; uint256)) inProgressAuctionsByAdrressIndex;
     mapping(uint256 =&gt; uint256[]) modifiersUsedInTicket;
 &nbsp;
-    ///@return The commit for a ticket.
     mapping(uint256 =&gt; uint256) public ticketToNumber;
     
     uint256[] public newAuctions;
@@ -1758,7 +1806,7 @@ contract ReverseAuction is
             auction.checkedWinner = true;
         }
         //If the auction hasn't been claimed and the caller is the winner it transfer the prize
-        if(!auction.claimed &amp;&amp; msg.sender == auction.winner){
+        if(!auction.claimed &amp;&amp; msg.sender == auction.winner &amp;&amp; ticketToNumber[_tokenId] == winnerNumber){
             usdcCoin.transfer(msg.sender, auction.prize);
             auction.claimed = true;
             emit ClaimPrize(auction.winner, _auctionId, winnerNumber);
@@ -1907,6 +1955,29 @@ contract ReverseAuction is
     }
 &nbsp;
     /**
+     * @dev Update the new auctions that has passed the commit phase.
+     */
+    function updateNewAuctions() public {
+        uint256 lenArray = newAuctions.length;
+        uint256 i = 0;
+        while(i &lt; lenArray){
+            Auction storage auction = auctions[newAuctions[i]];
+            
+            <span class="missing-if-branch" title="else path not taken" >E</span>if(auction.endTimeCommit &lt; block.timestamp){
+                auction.isNew = false;
+                uint256 _auctionId = auction.id;
+                newAuctionsIndex[newAuctions[newAuctions.length - 1]] = newAuctionsIndex[_auctionId];
+                newAuctions[newAuctionsIndex[_auctionId]] = newAuctions[newAuctions.length - 1];
+                newAuctions.pop();
+                lenArray--;
+            }
+            else{
+                i++;
+            }
+        }
+    }
+&nbsp;
+    /**
     * @dev Allows the designated `RECORDER_ROLE` to purchase a modifier NFT for a buyer.
     * @param _buyer The address of the buyer.
     * @param typeMod The type of the modifier.
@@ -1916,6 +1987,7 @@ contract ReverseAuction is
     function buyModifier(address _buyer, uint256 typeMod, uint256 value) public onlyRole(RECORDER_ROLE) {
         require(usdcCoin.allowance(_buyer, address(this)) &gt;= modifierCost, "Reverse Auction: Not enough allowance");
         require(usdcCoin.balanceOf(_buyer) &gt;= modifierCost, "Reverse Auction: Not enough token balance");
+        usdcCoin.transferFrom(_buyer, address(this), modifierCost);
         totalModifiers++;
         modifierNFT.safeMint(_buyer, totalModifiers, typeMod, value);
         emit BuyModifier(_buyer, totalModifiers, typeMod, value);
@@ -2011,7 +2083,7 @@ contract ReverseAuction is
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jul 17 2023 09:34:27 GMT-0500 (Peru Standard Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 20 2023 09:37:34 GMT-0500 (Peru Standard Time)
 </div>
 </div>
 <script src="../prettify.js"></script>

@@ -7,6 +7,7 @@ import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol"
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 
+
 interface INFTTicket is IERC721Upgradeable {
     function safeMint(address to, uint256 tokenId) external;
 }
@@ -110,7 +111,6 @@ contract ReverseAuction is
     mapping(address => mapping(uint256 => uint256)) inProgressAuctionsByAdrressIndex;
     mapping(uint256 => uint256[]) modifiersUsedInTicket;
 
-    ///@return The commit for a ticket.
     mapping(uint256 => uint256) public ticketToNumber;
     
     uint256[] public newAuctions;
@@ -405,7 +405,7 @@ contract ReverseAuction is
             auction.checkedWinner = true;
         }
         //If the auction hasn't been claimed and the caller is the winner it transfer the prize
-        if(!auction.claimed && msg.sender == auction.winner){
+        if(!auction.claimed && msg.sender == auction.winner && ticketToNumber[_tokenId] == winnerNumber){
             usdcCoin.transfer(msg.sender, auction.prize);
             auction.claimed = true;
             emit ClaimPrize(auction.winner, _auctionId, winnerNumber);
@@ -554,6 +554,29 @@ contract ReverseAuction is
     }
 
     /**
+     * @dev Update the new auctions that has passed the commit phase.
+     */
+    function updateNewAuctions() public {
+        uint256 lenArray = newAuctions.length;
+        uint256 i = 0;
+        while(i < lenArray){
+            Auction storage auction = auctions[newAuctions[i]];
+            
+            if(auction.endTimeCommit < block.timestamp){
+                auction.isNew = false;
+                uint256 _auctionId = auction.id;
+                newAuctionsIndex[newAuctions[newAuctions.length - 1]] = newAuctionsIndex[_auctionId];
+                newAuctions[newAuctionsIndex[_auctionId]] = newAuctions[newAuctions.length - 1];
+                newAuctions.pop();
+                lenArray--;
+            }
+            else{
+                i++;
+            }
+        }
+    }
+
+    /**
     * @dev Allows the designated `RECORDER_ROLE` to purchase a modifier NFT for a buyer.
     * @param _buyer The address of the buyer.
     * @param typeMod The type of the modifier.
@@ -563,6 +586,7 @@ contract ReverseAuction is
     function buyModifier(address _buyer, uint256 typeMod, uint256 value) public onlyRole(RECORDER_ROLE) {
         require(usdcCoin.allowance(_buyer, address(this)) >= modifierCost, "Reverse Auction: Not enough allowance");
         require(usdcCoin.balanceOf(_buyer) >= modifierCost, "Reverse Auction: Not enough token balance");
+        usdcCoin.transferFrom(_buyer, address(this), modifierCost);
         totalModifiers++;
         modifierNFT.safeMint(_buyer, totalModifiers, typeMod, value);
         emit BuyModifier(_buyer, totalModifiers, typeMod, value);
